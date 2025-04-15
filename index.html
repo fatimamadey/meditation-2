@@ -1,13 +1,54 @@
 <link rel="stylesheet" href="https://generativeart.online/css/drawing-app.css">
 <script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
+
+<!-- 
+  Image Sources:
+  https://www.pinterest.com/pin/17592254791984256/
+  https://www.pinterest.com/pin/375487687700359332/
+  https://www.pinterest.com/pin/116389971610003475/ 
+-->
+<style>
+  #gif-buttons {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(220, 208, 255, 0.85);
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .gif-button img {
+    width: 50px;
+    height: 50px;
+  }
+
+</style>
+
+<div id="gif-buttons">
+  <button class="gif-button" onclick="setGif('cat.gif')"> <img src="cat.gif"> </button>
+  <button class="gif-button" onclick="setGif('panda.gif')"><img src="panda.gif"> </button>
+  <button class="gif-button" onclick="setGif('totoro.gif')"><img src="totoro.gif"> </button>
+</div>
+
 <script>
 	/* global nn */
-  
+  let currentGif = 'cat.gif'
+
+  function setGif(name) {
+    currentGif = name
+  }
 function draw () {    
   if (nn.mouseDown) {
     const gif = nn.create('img')
-      .set({ src: 'cd.gif', draggable: false })
-      .css({ position: 'absolute' })
+      .set({ src: currentGif, draggable: false })
+      .css({ 
+        position: 'absolute',
+        width: '50px',
+        height: '50px',
+      })
       .addTo('body')
 
     gif.css({
